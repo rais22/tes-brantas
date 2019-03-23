@@ -1,0 +1,404 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.2
+-- Dumped by pg_dump version 11.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: app_role; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_role (
+    role_id bigint NOT NULL,
+    role_name character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public.app_role OWNER TO postgres;
+
+--
+-- Name: app_user; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_user (
+    user_id bigint NOT NULL,
+    user_name character varying(36) NOT NULL,
+    encryted_password character varying(128) NOT NULL,
+    enabled integer NOT NULL
+);
+
+
+ALTER TABLE public.app_user OWNER TO postgres;
+
+--
+-- Name: customer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.customer (
+    id bigint NOT NULL,
+    active boolean,
+    age integer,
+    name character varying(255)
+);
+
+
+ALTER TABLE public.customer OWNER TO postgres;
+
+--
+-- Name: divisi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.divisi (
+    nm_divisi character varying(100),
+    id_divisi integer NOT NULL
+);
+
+
+ALTER TABLE public.divisi OWNER TO postgres;
+
+--
+-- Name: employee; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.employee (
+    active character varying(100),
+    age integer,
+    name character varying(255),
+    id bigint NOT NULL,
+    jabatan integer,
+    divisi integer
+);
+
+
+ALTER TABLE public.employee OWNER TO postgres;
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hibernate_sequence OWNER TO postgres;
+
+--
+-- Name: jabatan; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.jabatan (
+    nm_jabatan character varying(100),
+    id_jabatan integer NOT NULL
+);
+
+
+ALTER TABLE public.jabatan OWNER TO postgres;
+
+--
+-- Name: persistent_logins; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.persistent_logins (
+    username character varying(64) NOT NULL,
+    series character varying(64) NOT NULL,
+    token character varying(64) NOT NULL,
+    last_used timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.persistent_logins OWNER TO postgres;
+
+--
+-- Name: rest; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rest (
+    id integer NOT NULL,
+    key character varying(100) NOT NULL,
+    value character varying(250) NOT NULL,
+    rand smallint NOT NULL
+);
+
+
+ALTER TABLE public.rest OWNER TO postgres;
+
+--
+-- Name: rest_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.rest_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.rest_id_seq OWNER TO postgres;
+
+--
+-- Name: rest_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.rest_id_seq OWNED BY public.rest.id;
+
+
+--
+-- Name: user_role; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_role (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    role_id bigint NOT NULL
+);
+
+
+ALTER TABLE public.user_role OWNER TO postgres;
+
+--
+-- Name: rest id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rest ALTER COLUMN id SET DEFAULT nextval('public.rest_id_seq'::regclass);
+
+
+--
+-- Data for Name: app_role; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_role (role_id, role_name) FROM stdin;
+1	ROLE_ADMIN
+2	ROLE_USER
+\.
+
+
+--
+-- Data for Name: app_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_user (user_id, user_name, encryted_password, enabled) FROM stdin;
+2	dbuser1	$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu	1
+1	dbadmin1	$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu	1
+\.
+
+
+--
+-- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.customer (id, active, age, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: divisi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.divisi (nm_divisi, id_divisi) FROM stdin;
+Management Information Systems	2
+HRD	26
+\.
+
+
+--
+-- Data for Name: employee; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.employee (active, age, name, id, jabatan, divisi) FROM stdin;
+active	24	Rais	46	31	2
+\.
+
+
+--
+-- Data for Name: jabatan; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.jabatan (nm_jabatan, id_jabatan) FROM stdin;
+Staff	41
+Supervisor	31
+Junior Manager	11
+Management Information Systemss	2
+Blah	4
+\.
+
+
+--
+-- Data for Name: persistent_logins; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.persistent_logins (username, series, token, last_used) FROM stdin;
+\.
+
+
+--
+-- Data for Name: rest; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rest (id, key, value, rand) FROM stdin;
+1	12345	tes	9
+2	12345	tes	16
+\.
+
+
+--
+-- Data for Name: user_role; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_role (id, user_id, role_id) FROM stdin;
+1	1	1
+2	1	2
+3	2	2
+\.
+
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.hibernate_sequence', 1, false);
+
+
+--
+-- Name: rest_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.rest_id_seq', 2, true);
+
+
+--
+-- Name: app_role app_role_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_role
+    ADD CONSTRAINT app_role_pk PRIMARY KEY (role_id);
+
+
+--
+-- Name: app_role app_role_uk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_role
+    ADD CONSTRAINT app_role_uk UNIQUE (role_name);
+
+
+--
+-- Name: app_user app_user_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_user
+    ADD CONSTRAINT app_user_pk PRIMARY KEY (user_id);
+
+
+--
+-- Name: app_user app_user_uk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_user
+    ADD CONSTRAINT app_user_uk UNIQUE (user_name);
+
+
+--
+-- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.customer
+    ADD CONSTRAINT customer_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: divisi divisi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.divisi
+    ADD CONSTRAINT divisi_pkey PRIMARY KEY (id_divisi);
+
+
+--
+-- Name: employee emplyee_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.employee
+    ADD CONSTRAINT emplyee_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: jabatan jabatan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jabatan
+    ADD CONSTRAINT jabatan_pkey PRIMARY KEY (id_jabatan);
+
+
+--
+-- Name: persistent_logins persistent_logins_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.persistent_logins
+    ADD CONSTRAINT persistent_logins_pkey PRIMARY KEY (series);
+
+
+--
+-- Name: rest rest_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rest
+    ADD CONSTRAINT rest_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_role user_role_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_role
+    ADD CONSTRAINT user_role_pk PRIMARY KEY (id);
+
+
+--
+-- Name: user_role user_role_uk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_role
+    ADD CONSTRAINT user_role_uk UNIQUE (user_id, role_id);
+
+
+--
+-- Name: user_role user_role_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_role
+    ADD CONSTRAINT user_role_fk1 FOREIGN KEY (user_id) REFERENCES public.app_user(user_id);
+
+
+--
+-- Name: user_role user_role_fk2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_role
+    ADD CONSTRAINT user_role_fk2 FOREIGN KEY (role_id) REFERENCES public.app_role(role_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

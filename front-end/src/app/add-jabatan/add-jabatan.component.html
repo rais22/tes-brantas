@@ -1,0 +1,11 @@
+<div class="col-md-6">
+  <h2 class="text-center">Tambah Jabatan</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Nama Jabatan:</label>
+      <input type="text" formControlName="namaJabatan" placeholder="Nama" name="namaJabatan" class="form-control" id="namaJabatan">
+    </div>
+
+    <button class="btn btn-success">ADD</button>
+  </form>
+</div>

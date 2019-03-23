@@ -1,0 +1,32 @@
+<div class="col-md-6">
+  <h2> Employee List</h2>
+  <button class="btn btn-danger" (click)="addUser()"> Tambah Karyawan</button>&nbsp;
+  <button class="btn btn-danger" (click)="listJabatan()"> List Jabatan</button>&nbsp;
+  <button class="btn btn-danger" (click)="listDivisi()"> List Divisi</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Umur</th>
+      <th>Nama</th>
+      <th>Active</th>
+      <th>Jabatan</th>
+      <th>Divisi</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td class="hidden">{{user.id}}</td>
+      <td>{{user.age}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.active}}</td>
+      <td>{{user.namaJabatan}}</td>
+      <td>{{user.namaDivisi}}</td>
+      <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
+        <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

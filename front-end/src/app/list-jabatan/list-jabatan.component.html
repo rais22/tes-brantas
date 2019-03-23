@@ -1,0 +1,25 @@
+<div class="col-md-6">
+  <h2> Divisi List</h2>
+  <button class="btn btn-danger" (click)="addJabatan()"> Tambah Jabatan</button>&nbsp;
+  <button class="btn btn-danger" (click)="listKaryawan()"> List Karyawan</button>&nbsp;
+  <button class="btn btn-danger" (click)="listJabatan()"> List Jabatan</button>&nbsp;
+  <button class="btn btn-danger" (click)="listDivisi()"> List Divisi</button>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">Id</th>
+      <th>Nama Jabatan</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let jabatan of jabatans">
+      <td class="hidden">{{jabatan.idJabatan}}</td>
+      <td>{{jabatan.namaJabatan}}</td>
+      <td><button class="btn btn-danger" (click)="deleteJabatan(jabatan)"> Delete</button>
+        <button class="btn btn-danger" (click)="editJabatan(jabatan)" style="margin-left: 20px;"> Edit</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

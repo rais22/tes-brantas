@@ -1,0 +1,54 @@
+<div class="col-md-6">
+  <h2 class="text-center">Ubah Karyawan</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+   <div class="form-group">
+      <label for="email">Nama:</label>
+      <input type="text" formControlName="name" placeholder="Nama" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Umur:</label>
+      <input formControlName="age" placeholder="Umur" name="age" class="form-control" id="age">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Active:</label>
+      <!--<input formControlName="active" placeholder="Active" name="active" class="form-control" id="active">-->
+
+      <select formControlName="active" placeholder="Active" name="active" class="form-control" id="active">
+               
+                <option value="active">Active</option>
+                <option value="non-active">Non Active</option>
+              
+              </select>
+    </div>
+
+
+     <div class="form-group">
+      <label for="firstName">Jabatan:</label>
+      <!--<input formControlName="jabatan" placeholder="Jabatan" name="jabatan" class="form-control" id="jabatan">-->
+
+      <select formControlName="jabatan" placeholder="Jabatan" name="jabatan" class="form-control" id="jabatan">
+               
+                <option *ngFor="let jabatan of jabatans" value="{{jabatan.idJabatan}}">{{jabatan.namaJabatan}}</option>
+
+              
+              </select>
+
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Divisi:</label>
+      <!--<input formControlName="divisi" placeholder="Divisi" name="divisi" class="form-control" id="divisi">-->
+
+       <select formControlName="divisi" placeholder="Divisi" name="divisi" class="form-control" id="divisi">
+               
+                <option *ngFor="let divisi of divisis" value="{{divisi.idDivisi}}">{{divisi.namaDivisi}}</option>
+
+              
+              </select>
+    </div>
+
+    <button class="btn btn-success">Update</button>
+  </form>
+</div>
