@@ -13,3 +13,10 @@ Click Package (crud_jdbc-master) -> Run As Spring Boot App
 
 ## Front-End
 Buka Command Line -> Masuk ke folder front-end -> ketikan perintah npm install untuk menginstall dependency -> ketikan perintah ng serve untuk menjalankan aplikasi di broswer -> buka http:/localhost:4200 di browser
+
+## Konfigurasi Database
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/examplejdbc
+spring.datasource.username=postgres
+spring.datasource.password=010250
+spring.datasource.platform=postgresql
