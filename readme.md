@@ -19,3 +19,7 @@ spring.datasource.url=jdbc:postgresql://localhost:5432/examplejdbc<br>
 spring.datasource.username=postgres<br>
 spring.datasource.password=010250<br>
 spring.datasource.platform=postgresql
+
+## Login Username
+username : rais@gmail.com<br>
+password : password
